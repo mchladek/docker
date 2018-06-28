@@ -1,0 +1,110 @@
+{
+  "logger": {
+    "level": "info",
+    "timestamp": false
+  },
+  "esclient": {
+    "hosts": [
+      { "host": "elasticsearch" }
+    ]
+  },
+  "elasticsearch": {
+    "settings": {
+      "index": {
+        "refresh_interval": "10s",
+        "number_of_replicas": "0",
+        "number_of_shards": "1"
+      }
+    }
+  },
+  "api": {
+    "textAnalyzer": "libpostal",
+    "services": {
+      "pip": { "url": "http://pip-service:4200" },
+      "libpostal": { "url": "http://libpostal:8080" },
+      "placeholder": { "url": "http://placeholder:4100" },
+      "interpolation": { "url": "http://interpolation:4300" }
+    },
+    "defaultParameters": {
+      "focus.point.lat": 41.84,
+      "focus.point.lon": -87.68
+    }
+  },
+  "imports": {
+    "adminLookup": {
+      "enabled": true
+    },
+    "geonames": {
+      "datapath": "/data/geonames",
+      "countryCode": "US"
+    },
+    "openstreetmap": {
+      "download": [
+        { "sourceURL": "https://s3.amazonaws.com/metro-extracts.nextzen.org/chicago_illinois.osm.pbf" }
+      ],
+      "leveldbpath": "/tmp",
+      "datapath": "/data/openstreetmap",
+      "import": [{
+        "filename": "chicago_illinois.osm.pbf"
+      }]
+    },
+    "openaddresses": {
+      "datapath": "/data/openaddresses",
+      "files": [
+        "us/il/cook.csv",
+        "us/il/city_of_chicago.csv"
+      ]
+    },
+    "polyline": {
+      "datapath": "/data/polylines",
+      "files": [ "extract.0sv" ]
+    },
+    "whosonfirst": {
+      "datapath": "/data/whosonfirst",
+      "importVenues": false,
+      "importPostalcodes": true,
+      "importPlace": [
+        "85940195"
+      ]
+    },
+    "transit": {
+      "datapath": "/data/transit",
+      "feeds": [
+        {
+          "layerId": "bikeshare",
+          "url": "https://feeds.divvybikes.com/stations/stations.json",
+          "filename": "stations.json",
+          "agencyId": "DivvyBikes",
+          "agencyName": "DivvyBikes",
+          "layerName": "bikeshare"
+        },
+        {
+          "layerId": "stops",
+          "url": "http://www.pacebus.com/gtfs/gtfs.zip",
+          "filename": "stops.txt",
+          "agencyId": "Pace",
+          "agencyName": "Pace",
+          "layerName": "Stop"
+        },
+        {
+          "layerId": "stops",
+          "url": "http://www.transitchicago.com/downloads/sch_data/google_transit.zip",
+          "filename": "stops.txt",
+          "agencyId": "CTA",
+          "agencyName": "CTA",
+          "layerName": "Stop"
+        }
+       ]
+      },
+    "interpolation": {
+      "download": {
+        "tiger": {
+          "datapath": "/data/tiger",
+          "states": [
+            { "state_code": 17, "county_code": 31, "name": "Cook County, IL" }
+          ]
+        }
+      }
+    }
+  }
+}
