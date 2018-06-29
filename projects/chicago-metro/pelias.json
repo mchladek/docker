@@ -80,14 +80,6 @@
         },
         {
           "layerId": "stops",
-          "url": "http://www.pacebus.com/gtfs/gtfs.zip",
-          "filename": "stops.txt",
-          "agencyId": "Pace",
-          "agencyName": "Pace",
-          "layerName": "Stop"
-        },
-        {
-          "layerId": "stops",
           "url": "http://www.transitchicago.com/downloads/sch_data/google_transit.zip",
           "filename": "stops.txt",
           "agencyId": "CTA",
