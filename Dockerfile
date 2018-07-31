@@ -1,5 +1,7 @@
-RUN yum update
-RUN yum install -y nginx zip
+FROM ubuntu:14.04
+
+RUN apt-get update
+RUN apt-get install -y nginx zip
 
 RUN cd projects/chicago-metro/
 RUN bash deploy.sh
