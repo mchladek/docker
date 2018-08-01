@@ -64,6 +64,8 @@
       "importVenues": false,
       "importPostalcodes": true,
       "importPlace": [
+        "102084317",
+        "404496273",
         "85940195"
       ]
     },
